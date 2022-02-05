@@ -33,14 +33,14 @@ client.on("messageCreate", async (message) => {
     const subreddit = await getRedditData(" ");
     // console.log(subreddit);
     let url = subreddit.memes[0].preview[3];
-    message.channel.send(url);
+    message.channel.send(url || "404");
   } else if (message.content.startsWith("^")) {
     const subreddit = await getRedditData(message.content.slice(1));
     if (subreddit.code === 404) {
       message.reply(subreddit.message);
     } else {
       let url = subreddit.memes[0].preview[3];
-      message.channel.send(url);
+      message.channel.send(url || "404");
     }
   }
 });
