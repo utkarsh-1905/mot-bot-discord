@@ -32,14 +32,14 @@ client.on("messageCreate", async (message) => {
   } else if (message.content === "^meme") {
     const subreddit = await getRedditData(" ");
     // console.log(subreddit);
-    let url = subreddit.memes[0].preview[3];
+    let url = subreddit.memes[0].preview[0];
     message.channel.send(url || "404");
   } else if (message.content.startsWith("^")) {
     const subreddit = await getRedditData(message.content.slice(1));
-    if (subreddit.code === 404 || subreddit.code === 400) {
+    if (subreddit.code != 200) {
       message.reply(subreddit.message);
     } else {
-      let url = subreddit.memes[0].preview[3];
+      let url = subreddit.memes[0].preview[0];
       message.channel.send(url || "404");
     }
   }
