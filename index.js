@@ -36,7 +36,7 @@ client.on("messageCreate", async (message) => {
     message.channel.send(url || "404");
   } else if (message.content.startsWith("^")) {
     const subreddit = await getRedditData(message.content.slice(1));
-    if (subreddit.code === 404) {
+    if (subreddit.code === 404 || subreddit.code === 400) {
       message.reply(subreddit.message);
     } else {
       let url = subreddit.memes[0].preview[3];
